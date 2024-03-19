@@ -10,7 +10,8 @@ public class DubboConfig {
     @Bean
     public ApplicationConfig applicationConfig() {
         ApplicationConfig applicationConfig = new ApplicationConfig();
-        applicationConfig.setName("lab");
+        applicationConfig.setName("node1");
+        applicationConfig.setQosEnable(false);
         return applicationConfig;
     }
     @Bean

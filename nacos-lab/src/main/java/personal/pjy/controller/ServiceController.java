@@ -1,25 +1,19 @@
 package personal.pjy.controller;
 
 import com.alibaba.nacos.api.exception.NacosException;
-import com.alibaba.nacos.api.naming.NamingService;
-import com.alibaba.nacos.api.naming.pojo.Instance;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import personal.pjy.api.Node1Service;
 
 @RestController
 @RequestMapping("discover")
 public class ServiceController {
-    /*private final NamingService namingService;
-    public ServiceController(NamingService namingService) {
-        this.namingService = namingService;
+    @DubboReference(interfaceName = "personal.pjy.api.Node1Service")
+    Node1Service node1Service;
+    @GetMapping("sayHi")
+    public String instanceList() throws NacosException {
+        return node1Service.sayHi();
     }
-
-    @GetMapping("instances")
-    public List<Instance> instanceList() throws NacosException {
-        return namingService.getAllInstances("nacos.test.3");
-    }
-    */
 }
